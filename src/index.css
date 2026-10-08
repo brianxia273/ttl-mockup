@@ -1,0 +1,481 @@
+@import "tailwindcss";
+
+/* Tokens and classes used by the shared Navbar/Footer */
+@theme {
+  --color-theme-red: #d42a32;
+  --color-theme-dk-red: #b3242b;
+  --color-text-dk-grey: #3a3a3a;
+  --color-theme-grey: #f4f4f4;
+  --color-theme-white: #ffffff;
+}
+
+@utility footerheading {
+  color: var(--color-theme-red);
+  font-size: 22px;
+}
+
+@utility footerbottomtext {
+  color: #888;
+  font-size: 16px;
+}
+
+/* Used by UnderConstructionPopup */
+@utility heading {
+  color: var(--color-theme-red);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+@utility subtext {
+  color: var(--color-text-dk-grey);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+@utility lgbutton {
+  font-size: 18px;
+  padding: 10px 40px;
+}
+
+:root {
+  --red: #d42a32;
+  --red-dark: #b3242b;
+  --pink: #fff1f1;
+  --gray: #d9d9d9;
+  --gray-bg: #f4f4f4;
+  --text: #1e1e1e;
+  --muted: #666;
+  --green: #2ca02c;
+  --orange: #e0821e;
+  --border: #888;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 56px 80px;
+}
+
+.muted {
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+.empty {
+  color: var(--muted);
+  padding: 40px 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--red-dark);
+}
+
+.btn-outline {
+  background: #fff;
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.btn-small {
+  padding: 4px 22px;
+  font-size: 12px;
+}
+
+.btn-pill {
+  padding: 8px 32px;
+}
+
+/* Status badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.badge-available,
+.badge-approved {
+  color: var(--green);
+}
+
+.badge-reserved,
+.badge-processing {
+  color: var(--orange);
+}
+
+.badge-overdue {
+  color: var(--red);
+}
+
+/* Hero */
+.hero {
+  background: var(--pink);
+  text-align: center;
+  padding: 72px 24px 80px;
+}
+
+.hero h1 {
+  font-family: "Roboto Slab", serif;
+  font-weight: 500;
+  color: var(--red);
+  font-size: 56px;
+  margin: 0 0 16px;
+}
+
+.hero p {
+  margin: 0 0 24px;
+  font-size: 18px;
+}
+
+/* Search + filter */
+.search-filter {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--text);
+  border-radius: 2px;
+  padding: 6px 10px;
+  width: 300px;
+}
+
+.search input {
+  border: none;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+  flex: 1;
+}
+
+.filter,
+.select-time {
+  font: inherit;
+  font-size: 14px;
+  border: 1px solid var(--text);
+  border-radius: 2px;
+  padding: 6px 10px;
+  min-width: 140px;
+  background: #fff;
+}
+
+.section-title {
+  color: var(--red);
+  font-weight: 500;
+  font-size: 40px;
+  margin: 32px 0 20px;
+}
+
+.section-title .count {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 12px;
+}
+
+/* Home toolbar + view toggle */
+.home-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.view-toggle {
+  display: inline-flex;
+  border: 1px solid var(--text);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.view-toggle button {
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 16px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.view-toggle button.active {
+  background: var(--red);
+  color: #fff;
+}
+
+/* Toy card (home) */
+.toy-card {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  min-height: 370px;
+}
+
+.toy-card-image {
+  flex: 0 0 48%;
+  background: var(--gray);
+}
+
+.toy-card-image img,
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toy-card-body {
+  flex: 1;
+  padding: 28px 32px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toy-card-body h3 {
+  color: var(--red);
+  font-weight: 500;
+  font-size: 28px;
+  margin: 0 0 20px;
+}
+
+.toy-card-body p {
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0 0 20px;
+}
+
+.toy-card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Rent modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(60, 60, 60, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  width: min(880px, 100%);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.modal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.modal h2 {
+  color: var(--red);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.modal .badge {
+  font-size: 14px;
+}
+
+.modal-details {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: baseline;
+  row-gap: 16px;
+  margin: 28px 0;
+  font-size: 15px;
+}
+
+.modal-details dt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.modal-details dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.modal .select-time {
+  font-size: 14px;
+  min-width: 120px;
+  padding: 4px 8px;
+}
+
+.modal-message {
+  font-size: 14px;
+  color: var(--muted);
+  margin: auto 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-actions .btn {
+  font-size: 15px;
+  padding: 8px 24px;
+}
+
+.modal-image {
+  flex: 0 0 42%;
+  background: var(--gray);
+  border-radius: 12px;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+/* My Toys */
+.page-title {
+  color: var(--red);
+  font-weight: 600;
+  font-size: 48px;
+  margin: 24px 0 8px;
+}
+
+.my-toys .section-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.loan-section {
+  margin-top: 48px;
+}
+
+.loan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.loan-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.loan-card-image {
+  width: 100%;
+  aspect-ratio: 290 / 232;
+  background: var(--gray);
+}
+
+.loan-card-body {
+  padding: 16px;
+}
+
+.loan-card h3 {
+  color: var(--red);
+  font-weight: 600;
+  font-size: 19px;
+  margin: 0 0 8px;
+}
+
+.loan-card hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 12px 0;
+}
+
+.loan-date {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.loan-hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.loan-date.overdue,
+.loan-hint.overdue {
+  color: var(--red);
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .toy-card,
+  .modal {
+    flex-direction: column;
+  }
+  .modal {
+    padding: 32px 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-image {
+    min-height: 200px;
+  }
+  .loan-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
