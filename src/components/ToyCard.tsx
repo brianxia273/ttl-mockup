@@ -3,11 +3,18 @@ import StatusBadge from './StatusBadge'
 
 type Props = {
   toy: Toy
-  onRent: (toy: Toy) => void
+  onBorrow: (toy: Toy) => void
   compact?: boolean
 }
 
-export default function ToyCard({ toy, onRent, compact = false }: Props) {
+export default function ToyCard({ toy, onBorrow, compact = false }: Props) {
+  // Reserved toys can't be borrowed, so they get no button
+  const borrowButton = toy.status === 'available' && (
+    <button className="btn btn-primary btn-small" onClick={() => onBorrow(toy)}>
+      Borrow
+    </button>
+  )
+
   if (compact) {
     return (
       <article className="loan-card">
@@ -15,10 +22,8 @@ export default function ToyCard({ toy, onRent, compact = false }: Props) {
         <div className="loan-card-body">
           <h3>{toy.name}</h3>
           <StatusBadge kind={toy.status} />
-          <hr />
-          <button className="btn btn-primary btn-small" onClick={() => onRent(toy)}>
-            Rent
-          </button>
+          {borrowButton && <hr />}
+          {borrowButton}
         </div>
       </article>
     )
@@ -37,9 +42,7 @@ export default function ToyCard({ toy, onRent, compact = false }: Props) {
         </p>
         <div className="toy-card-footer">
           <StatusBadge kind={toy.status} />
-          <button className="btn btn-primary btn-small" onClick={() => onRent(toy)}>
-            Rent
-          </button>
+          {borrowButton}
         </div>
       </div>
     </article>

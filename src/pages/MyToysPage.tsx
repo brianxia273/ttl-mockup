@@ -7,7 +7,7 @@ const filterOptions = [
   { value: 'all', label: 'All statuses' },
   { value: 'processing', label: 'Processing' },
   { value: 'approved', label: 'Approved' },
-  { value: 'overdue', label: 'Overdue' },
+  { value: 'overdue', label: 'Check-in time' },
 ]
 
 function LoanCard({ loan }: { loan: Loan }) {
@@ -71,10 +71,10 @@ export default function MyToysPage() {
             Currently with you{' '}
             <span className="count">
               {plural(withYou.length)}
-              {overdue > 0 && ` · ${overdue} overdue`}
+              {overdue > 0 && ` · ${overdue} ready to check in`}
             </span>
           </h2>
-          <p className="muted">These loans are approved and in your care. Please return each toy by its due date.</p>
+          <p className="muted">These toys are approved and in your care. Enjoy, and reach out anytime if something comes up.</p>
           <div className="loan-grid">
             {withYou.map((l) => <LoanCard key={l.id} loan={l} />)}
           </div>

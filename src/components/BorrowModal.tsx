@@ -5,10 +5,10 @@ import StatusBadge from "./StatusBadge";
 type Props = {
   toy: Toy;
   onClose: () => void;
-  onReserve: () => void;
+  onBorrow: () => void;
 };
 
-export default function RentModal({ toy, onClose, onReserve }: Props) {
+export default function BorrowModal({ toy, onClose, onBorrow }: Props) {
   const [period, setPeriod] = useState("");
   const reserved = toy.status === "reserved";
 
@@ -55,15 +55,16 @@ export default function RentModal({ toy, onClose, onReserve }: Props) {
 
           <p className="modal-message pb-6">
             {reserved
-              ? "This toy is currently lent out, but you may join the waitlist"
-              : "Reserve the toy, and we will contact you on details after"}
+              ? "This toy is currently lent out and unavailable to borrow."
+              : "Borrow the toy, and we will contact you on details after"}
           </p>
           <div className="modal-actions">
             <button
               className="btn btn-primary btn-pill"
-              onClick={reserved ? onClose : onReserve}
+              onClick={onBorrow}
+              disabled={reserved}
             >
-              {reserved ? "Waitlist" : "Reserve"}
+              {reserved ? "Unavailable" : "Borrow"}
             </button>
             <a
               className="btn btn-outline btn-pill"

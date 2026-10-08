@@ -5,7 +5,7 @@ const labels: Record<BadgeKind, string> = {
   reserved: 'Already Reserved',
   processing: 'Processing',
   approved: 'Approved',
-  overdue: 'Overdue · With you',
+  overdue: 'With you · Check-in time',
 }
 
 function Icon({ kind }: { kind: BadgeKind }) {

@@ -1,12 +1,20 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import CATLogo from "../assets/logo.png";
 import { useState } from "react";
-import { Bars3Icon } from "@heroicons/react/24/solid";
+import { Bars3Icon, UserCircleIcon } from "@heroicons/react/24/solid";
 
 const baseTabStyles =
   "text-base font-medium hover:text-theme-dk-red cursor-pointer";
 const activeStyles = `${baseTabStyles} text-theme-red`;
 const nonActiveStyles = `${baseTabStyles} text-text-dk-grey`;
+
+function ProfileIcon() {
+  return (
+    <button aria-label="Profile" className="text-text-dk-grey hover:text-theme-dk-red cursor-pointer">
+      <UserCircleIcon className="h-8 w-8" />
+    </button>
+  );
+}
 
 export function Navbar() {
   type TabProps = {
@@ -66,12 +74,14 @@ export function Navbar() {
           }}
         />
         <nav className="hidden lg:flex justify-end">
-          <div className="flex gap-16 mr-20">
+          <div className="flex items-center gap-16 mr-20">
             <Tab routeToPath="/" tabName="Home" />
             <Tab routeToPath="/mytoys" tabName="My Toys" />
+            <ProfileIcon />
           </div>
         </nav>
-        <div className="flex lg:hidden items-center pr-5">
+        <div className="flex lg:hidden items-center gap-4 pr-5">
+          <ProfileIcon />
           <Bars3Icon
             className="flex lg:hidden h-8 sm:h-10 nonActiveStyles"
             onClick={() => {

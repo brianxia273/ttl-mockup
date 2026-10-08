@@ -43,6 +43,6 @@ export type Loan = {
 export const loans: Loan[] = [
   { id: 1, name: 'Toy 1', status: 'processing', dateLine: 'Requested 7 Oct 2026', hint: 'We’ll email you when it’s approved.' },
   { id: 2, name: 'Toy 2', status: 'processing', dateLine: 'Requested 7 Oct 2026', hint: 'We’ll email you when it’s approved.' },
-  { id: 3, name: 'Toy 3', status: 'overdue', dateLine: 'Was due 5 Oct 2026', hint: 'Please contact the team to return' },
+  { id: 3, name: 'Toy 3', status: 'overdue', dateLine: 'Planned return 5 Oct 2026', hint: 'No rush! Reach out if you’d like to keep it longer.' },
   { id: 4, name: 'Toy 4', status: 'approved', dateLine: 'Due 15 Oct 2026', hint: '7 days left' },
 ]

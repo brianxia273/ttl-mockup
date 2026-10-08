@@ -2,8 +2,8 @@ import { useState } from 'react'
 import Hero from '../components/Hero'
 import SearchFilter from '../components/SearchFilter'
 import ToyCard from '../components/ToyCard'
-import RentModal from '../components/RentModal'
-import { RentConfirmationPopup } from '../components/RentConfirmationPopup'
+import BorrowModal from '../components/BorrowModal'
+import { BorrowConfirmationPopup } from '../components/BorrowConfirmationPopup'
 import { toys, type Toy } from '../data/toys'
 
 const filterOptions = [
@@ -55,7 +55,7 @@ export default function HomePage() {
               {visible
                 .filter((t) => t.type === type)
                 .map((toy) => (
-                  <ToyCard key={toy.id} toy={toy} onRent={setSelectedToy} compact={compact} />
+                  <ToyCard key={toy.id} toy={toy} onBorrow={setSelectedToy} compact={compact} />
                 ))}
             </div>
           </section>
@@ -63,16 +63,16 @@ export default function HomePage() {
         {types.length === 0 && <p className="empty">No toys match your search.</p>}
       </main>
       {selectedToy && (
-        <RentModal
+        <BorrowModal
           toy={selectedToy}
           onClose={() => setSelectedToy(null)}
-          onReserve={() => {
+          onBorrow={() => {
             setConfirmedToy(selectedToy)
             setSelectedToy(null)
           }}
         />
       )}
-      {confirmedToy && <RentConfirmationPopup toyName={confirmedToy.name} onClose={() => setConfirmedToy(null)} />}
+      {confirmedToy && <BorrowConfirmationPopup toyName={confirmedToy.name} onClose={() => setConfirmedToy(null)} />}
     </>
   )
 }

@@ -98,8 +98,25 @@ a {
   color: #fff;
 }
 
-.btn-primary:hover {
+.btn:disabled,
+.btn:disabled:hover {
+  background: var(--gray);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.btn-primary:hover:not(:disabled) {
   background: var(--red-dark);
+}
+
+.btn-white {
+  background: #fff;
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.btn-white:hover {
+  background: var(--gray);
 }
 
 .btn-outline {
@@ -157,6 +174,13 @@ a {
 .hero p {
   margin: 0 0 24px;
   font-size: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 /* Search + filter */
@@ -287,7 +311,7 @@ a {
   align-items: center;
 }
 
-/* Rent modal */
+/* Borrow modal */
 .modal-backdrop {
   position: fixed;
   inset: 0;

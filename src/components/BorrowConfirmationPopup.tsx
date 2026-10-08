@@ -5,7 +5,7 @@ type Props = {
   onClose: () => void
 }
 
-export function RentConfirmationPopup({ toyName, onClose }: Props) {
+export function BorrowConfirmationPopup({ toyName, onClose }: Props) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
