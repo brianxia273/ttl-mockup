@@ -11,12 +11,13 @@
 
 @utility footerheading {
   color: var(--color-theme-red);
-  font-size: 22px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 @utility footerbottomtext {
   color: #888;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* Used by UnderConstructionPopup */
@@ -659,4 +660,12 @@ a {
   border: 1px solid var(--green);
   border-radius: 9999px;
   padding: 2px 10px;
+}
+
+.hero .login-subtitle {
+  font-family: var(--font-roboto-slab), serif;
+  font-weight: 500;
+  color: var(--red);
+  font-size: 28px;
+  margin: 0 0 12px;
 }

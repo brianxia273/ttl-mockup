@@ -11,7 +11,7 @@ function TopFooter() {
   const location = usePathname();
   const iconStyles = "hover:grayscale grayscale-0 hover:brightness-75 brightness-100 transition-all cursor-pointer scale-90 xl:scale-100";
   return (
-    <div className="h-40 lg:h-50 bg-theme-grey flex justify-center gap-20 lg:justify-between lg:gap-0 px-5 w-full">
+    <div className="h-32 lg:h-40 bg-theme-grey flex justify-center gap-20 lg:justify-between lg:gap-0 px-5 w-full">
       <div className="hidden lg:flex items-center ">
         <img src={CATLogo.src} alt="Cornell Assistive Technologies Logo" className="h-auto w-auto cursor-pointer"
           onClick={() => {
