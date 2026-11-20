@@ -1,22 +1,24 @@
-import { useLocation, useNavigate } from "react-router-dom";
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
 import CATLogo from "../assets/logo.png"
 import linkedin from "../assets/linkedin.svg"
 import instagram from "../assets/instagram.svg"
 import youtube from "../assets/youtube.svg"
 
 function TopFooter() {
-  const navigate = useNavigate()
-  const location = useLocation().pathname;
+  const router = useRouter()
+  const location = usePathname();
   const iconStyles = "hover:grayscale grayscale-0 hover:brightness-75 brightness-100 transition-all cursor-pointer scale-90 xl:scale-100";
   return (
     <div className="h-40 lg:h-50 bg-theme-grey flex justify-center gap-20 lg:justify-between lg:gap-0 px-5 w-full">
       <div className="hidden lg:flex items-center ">
-        <img src={CATLogo} alt="Cornell Assistive Technologies Logo" className="h-auto w-auto cursor-pointer"
+        <img src={CATLogo.src} alt="Cornell Assistive Technologies Logo" className="h-auto w-auto cursor-pointer"
           onClick={() => {
-            if (location === "/") {
+            if (location === "/Home") {
               window.scrollTo({ top: 0, behavior: "smooth" });
             } else {
-              navigate("/");
+              router.push("/Home");
             }
           }} />
       </div>
@@ -24,11 +26,11 @@ function TopFooter() {
         <div className="flex flex-col mt-7 lg:ml-10 xl:ml-25 gap-2">
           <h3 className="footerheading w-50">Find Us Online</h3>
           <div className="flex gap-4.5">
-            <img src={linkedin} alt="Visit Our LinkedIn" className={iconStyles}
+            <img src={linkedin.src} alt="Visit Our LinkedIn" className={iconStyles}
               onClick={() => window.open('https://www.linkedin.com/company/cornellassist/', '_blank')} />
-            <img src={instagram} alt="Visit Our Instagram" className={iconStyles}
+            <img src={instagram.src} alt="Visit Our Instagram" className={iconStyles}
               onClick={() => window.open('https://www.instagram.com/cornellassist/', '_blank')} />
-            <img src={youtube} alt="Visit Our Youtube" className={iconStyles}
+            <img src={youtube.src} alt="Visit Our Youtube" className={iconStyles}
               onClick={() => window.open('https://www.youtube.com/@CornellAssistiveTechnologies', '_blank')} />
           </div>
         </div>

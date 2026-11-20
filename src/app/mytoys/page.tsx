@@ -1,7 +1,12 @@
-import { useState } from 'react'
-import SearchFilter from '../components/SearchFilter'
-import StatusBadge from '../components/StatusBadge'
-import { loans, type Loan } from '../data/toys'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import SearchFilter from '@/components/SearchFilter'
+import StatusBadge from '@/components/StatusBadge'
+import NotificationPopups from '@/components/NotificationPopups'
+import { toLoan, type Loan, type Reservation } from '@/data/toys'
+import { useUser } from '@/lib/useUser'
 
 const filterOptions = [
   { value: 'all', label: 'All statuses' },
@@ -13,7 +18,9 @@ const filterOptions = [
 function LoanCard({ loan }: { loan: Loan }) {
   return (
     <article className="loan-card">
-      <div className="loan-card-image" />
+      <div className="loan-card-image">
+        {loan.image && <img src={loan.image} alt={loan.name} className="h-full w-full object-cover" />}
+      </div>
       <div className="loan-card-body">
         <h3>{loan.name}</h3>
         <StatusBadge kind={loan.status} />
@@ -28,8 +35,29 @@ function LoanCard({ loan }: { loan: Loan }) {
 const plural = (n: number) => `${n} toy${n === 1 ? '' : 's'}`
 
 export default function MyToysPage() {
+  const router = useRouter()
+  const { user, loading: userLoading } = useUser()
+  const [loans, setLoans] = useState<Loan[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState('all')
+
+  useEffect(() => {
+    if (userLoading) return
+    if (!user) {
+      router.replace('/login?next=/mytoys')
+      return
+    }
+    fetch(`/api/users/${user.id}/toys`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error()
+        const reservations = (await res.json()) as Reservation[]
+        setLoans(reservations.map(toLoan))
+      })
+      .catch(() => setError('Could not load your toys. Please try again later.'))
+      .finally(() => setLoading(false))
+  }, [user, userLoading, router])
 
   const visible = loans.filter(
     (l) =>
@@ -42,6 +70,7 @@ export default function MyToysPage() {
 
   return (
     <main className="container my-toys">
+      <NotificationPopups />
       <h1 className="page-title">My Toys</h1>
       <p className="muted">Here are all your toy requests, current loans and return dates.</p>
       <SearchFilter
@@ -81,7 +110,11 @@ export default function MyToysPage() {
         </section>
       )}
 
-      {visible.length === 0 && <p className="empty">No toys match your search.</p>}
+      {loading && <p className="empty">Loading your toys…</p>}
+      {!loading && error && <p className="empty">{error}</p>}
+      {!loading && !error && visible.length === 0 && (
+        <p className="empty">{loans.length === 0 ? 'You haven’t borrowed any toys yet.' : 'No toys match your search.'}</p>
+      )}
     </main>
   )
 }

@@ -4,14 +4,14 @@ export default function Hero() {
       <h1>Toy Library</h1>
       <p>Browse and borrow toys adapted by Cornell Assistive Technologies.</p>
       <div className="hero-actions">
-        <a className="btn btn-primary" href="#">
-          Learn More About CAT
+        <a className="btn btn-primary" href="https://www.cornellassist.com/">
+          CAT Homepage
         </a>
         <a
           className="btn btn-white"
           href="mailto:assistivetech@cornell.edu?subject=Custom%20toy%20request"
         >
-          Request a Custom Toy
+          Email Us for a Custom Toy
         </a>
       </div>
     </section>
